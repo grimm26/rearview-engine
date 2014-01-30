@@ -258,7 +258,8 @@ module Rearview
         incoming_date_format = '%m/%d/%Y %H:%M'
         mins = minutes.nil? ? @@DEFAULT_MINUTES : minutes.to_i
         if to_date == "now" || to_date.nil?
-          now = Time.now.gmtime
+          # assume db data is localtime.  This should be configurable per Monitor.
+          now = Time.now
         else
           now = DateTime.strptime(to_date, incoming_date_format)
         end
